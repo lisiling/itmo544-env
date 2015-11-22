@@ -20,19 +20,26 @@ sudo php /var/www/html/setup.php &> /tmp/database-setup.txt
 
 echo "Hello!" > /tmp/hello.txt
 
+
+
+
 # sns-service
 
 ARN=(`aws sns create-topic --name mp2-lisiling`)
-
 echo "This is the ARN: $ARN"
+
+# arn arn:aws:sns:us-east-1:632259975581:mp2-lisiling
+# subscribed and send message to 13126782765
+# subscrib confirmed
+
+
 
 aws sns set-topic-attributes --topic-arn $ARN --attribute-name DisplayName --attribute-value mp2-lisiling
 
 aws sns subscribe --topic-arn $ARN --protocol sms --notification-endpoint 13126782765
 
-# subscribed and send message to 13126782765
-
 aws sns publish --topic-arn arn:aws:sns:us-east-1:632259975581:mp2-lisiling --message "sms for test mp2"
+
 
 # subscription id is: 
 # arn:aws:sns:us-east-1:632259975581:mp2-lisiling:2686605e-d210-4d33-b6ad-5ddc393e3c3b
